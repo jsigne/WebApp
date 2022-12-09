@@ -41,7 +41,7 @@ public class EmployeeProxy {
         return response.getBody();
     }
 
-    public Employee getEmployee(int id) {
+    public Employee getEmployee(final int id) {
         String baseApiUrl = props.getApiUrl();
         String getEmployeeUrl = baseApiUrl + "/employee/" + id;
 
@@ -57,9 +57,9 @@ public class EmployeeProxy {
         return response.getBody();
     }
 
-    public Employee updateEmployee(int id, Employee employee) {
+    public Employee updateEmployee(Employee employee) {
         String baseApiUrl = props.getApiUrl();
-        String updateEmployeesUrl = baseApiUrl + "/employee/" + id;
+        String updateEmployeesUrl = baseApiUrl + "/employee/" + employee.getId();
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Employee> response = restTemplate.exchange(
@@ -88,6 +88,14 @@ public class EmployeeProxy {
         log.debug("Create Employee call " + response.getStatusCode().toString());
 
         return response.getBody();
+    }
+
+    public void deleteEmployee(final int id){
+        String baseApiUrl = props.getApiUrl();
+        String deleteEmployeeUrl = baseApiUrl + "/employee" + id;
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(deleteEmployeeUrl);
     }
 
 }
