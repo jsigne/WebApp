@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Web Application</title>
+</head>
+
+<body>
+<h2 class="h2">Liste des employées</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-if="${employees.empty}">
+        <td colspan="3">Aucun employée en base de données</td>
+    </tr>
+    <tr data-th-each="employee: ${employees}">
+        <td><span> Test </span></td>
+        <td><span data-th-text="${employee.firstname}"> Prénom </span></td>
+        <td><span data-th-text="${employee.lastname}"> Nom </span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
