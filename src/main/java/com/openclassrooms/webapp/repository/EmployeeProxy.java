@@ -2,6 +2,7 @@ package com.openclassrooms.webapp.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,55 @@ public class EmployeeProxy {
         );
 
         log.debug("Get Employees call " + response.getStatusCode().toString());
+
+        return response.getBody();
+    }
+
+    public Employee getEmployee(int id) {
+        String baseApiUrl = props.getApiUrl();
+        String getEmployeeUrl = baseApiUrl + "/employee/" + id;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Employee> response = restTemplate.exchange(
+                getEmployeeUrl,
+                HttpMethod.GET,
+                null,
+                Employee.class);
+
+        log.debug("Get Employees call " + response.getStatusCode().toString());
+
+        return response.getBody();
+    }
+
+    public Employee updateEmployee(int id, Employee employee) {
+        String baseApiUrl = props.getApiUrl();
+        String updateEmployeesUrl = baseApiUrl + "/employee/" + id;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Employee> response = restTemplate.exchange(
+                updateEmployeesUrl,
+                HttpMethod.PUT,
+                new HttpEntity<Employee>(employee),
+                Employee.class);
+
+        log.debug("Get Employees call " + response.getStatusCode().toString());
+
+        return response.getBody();
+    }
+
+    public Employee createEmployee(Employee employee){
+        String baseApiUrl = props.getApiUrl();
+        String createEmployeeUrl = baseApiUrl + "/employee";
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<Employee> request = new HttpEntity<Employee>(employee);
+        ResponseEntity<Employee> response = restTemplate.exchange(
+                createEmployeeUrl,
+                HttpMethod.POST,
+                request,
+                Employee.class);
+
+        log.debug("Create Employee call " + response.getStatusCode().toString());
 
         return response.getBody();
     }
