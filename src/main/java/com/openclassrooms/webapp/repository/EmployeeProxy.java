@@ -92,7 +92,7 @@ public class EmployeeProxy {
 
     public void deleteEmployee(final int id){
         String baseApiUrl = props.getApiUrl();
-        String deleteEmployeeUrl = baseApiUrl + "/employee" + id;
+        String deleteEmployeeUrl = baseApiUrl + "/employee/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(deleteEmployeeUrl);
