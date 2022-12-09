@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 public class EmployeeProxyTest {
@@ -17,7 +16,9 @@ public class EmployeeProxyTest {
     @Test
     public void getEmployees() throws Exception {
         Iterable<Employee> employee = employeeProxy.getEmployees();
-        assertNotNull(employee);
+        for (Employee e : employee) {
+            System.out.println(e.getFirstname());
+        }
     }
 
 }

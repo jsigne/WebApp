@@ -16,7 +16,7 @@ public class EmployeeService {
         return employeeProxy.getEmployee(id);
     }
 
-    public Iterable<Employee> getEmployee(){
+    public Iterable<Employee> getEmployees(){
         return employeeProxy.getEmployees();
     }
 
@@ -24,7 +24,7 @@ public class EmployeeService {
         Employee savedEmployee;
 
         // Règle de gestion : Le nom de famille doit être mis en majuscule.
-        employee.setLastName(employee.getLastName().toUpperCase());
+        employee.setLastname(employee.getLastname().toUpperCase());
 
         if (employee.getId() == null) {
             // Si l'id est nul, alors c'est un nouvel employé.
